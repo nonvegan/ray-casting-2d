@@ -74,5 +74,4 @@ setInterval(() => {
   clear();
   draw();
   update();
-  console.log(obstacles.length);
 }, getMs(60));
