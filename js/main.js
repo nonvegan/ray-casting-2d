@@ -7,7 +7,7 @@ const ctx = canvas.getContext("2d");
 const width = Math.min(window.innerWidth, window.innerHeight) / 1.6;
 const height = Math.min(window.innerWidth, window.innerHeight) / 1.6;
 let obstacles = [];
-let obstacleDraw;
+let lineDrawing;
 let source;
 let isLerping = false;
 
@@ -15,6 +15,7 @@ function setup() {
   canvas.width = width;
   canvas.height = height;
   canvas.style.cursor = "none";
+  canvas.addEventListener("mouseleave", (evt) => (isLerping = true));
   canvas.addEventListener("mousemove", (evt) => {
     source.pos = getMousePosElem(evt);
     isLerping = false;
@@ -24,23 +25,22 @@ function setup() {
     const start = getMousePosElem(evt);
     const mouseMoveHandler = (e) => {
       const end = getMousePosElem(e);
-      obstacleDraw = new Line(start.x, start.y, end.x, end.y);
+      lineDrawing = new Line(start.x, start.y, end.x, end.y);
     };
     const mouseUpHandler = (e) => {
       canvas.removeEventListener("mousemove", mouseMoveHandler);
       canvas.removeEventListener("mouseup", mouseUpHandler);
-      if (obstacleDraw) {
-        obstacles.push(obstacleDraw);
-        obstacleDraw = null;
+      if (lineDrawing) {
+        obstacles.push(lineDrawing);
+        lineDrawing = null;
       }
     };
     canvas.addEventListener("mousemove", mouseMoveHandler);
     canvas.addEventListener("mouseup", mouseUpHandler);
   });
 
-  canvas.addEventListener("mouseleave", (evt) => (isLerping = true));
   resetButton.addEventListener("click", resetObstacles, false);
-  ctx.globalAlpha = 0.75;
+  ctx.globalAlpha = 0.5;
   ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue("--fuchsia");
   source = new Source(width / 2, height / 2, 300, obstacles);
   resetObstacles();
@@ -48,7 +48,7 @@ function setup() {
 
 function resetObstacles() {
   obstacles = [];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 3; i++) {
     obstacles.push(new Line(Math.random() * width, Math.random() * height, Math.random() * width, Math.random() * height));
   }
   source.obstacles = obstacles;
@@ -66,7 +66,7 @@ function draw() {
   for (const obstacle of obstacles) {
     obstacle.draw(ctx);
   }
-  if (obstacleDraw) obstacleDraw.draw(ctx);
+  if (lineDrawing) lineDrawing.draw(ctx);
   source.draw(ctx);
 }
 
