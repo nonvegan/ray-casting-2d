@@ -15,12 +15,13 @@ function setup() {
   canvas.width = width;
   canvas.height = height;
   canvas.style.cursor = "none";
+  ctx.globalAlpha = 0.5;
+  ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue("--fuchsia");
   canvas.addEventListener("mouseleave", (evt) => (isLerping = true));
   canvas.addEventListener("mousemove", (evt) => {
     source.pos = getMousePosElem(evt);
     isLerping = false;
   });
-
   canvas.addEventListener("mousedown", (evt) => {
     const start = getMousePosElem(evt);
     const mouseMoveHandler = (e) => {
@@ -38,10 +39,8 @@ function setup() {
     canvas.addEventListener("mousemove", mouseMoveHandler);
     canvas.addEventListener("mouseup", mouseUpHandler);
   });
-
   resetButton.addEventListener("click", resetObstacles, false);
-  ctx.globalAlpha = 0.5;
-  ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue("--fuchsia");
+
   source = new Source(width / 2, height / 2, 300, obstacles);
   resetObstacles();
 }
