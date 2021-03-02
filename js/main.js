@@ -7,6 +7,7 @@ const ctx = canvas.getContext("2d");
 const width = Math.min(window.innerWidth, window.innerHeight) / 1.6;
 const height = Math.min(window.innerWidth, window.innerHeight) / 1.6;
 let obstacles = [];
+let obstacleDraw;
 let source;
 let isLerping = false;
 
@@ -18,6 +19,25 @@ function setup() {
     source.pos = getMousePosElem(evt);
     isLerping = false;
   });
+
+  canvas.addEventListener("mousedown", (evt) => {
+    const start = getMousePosElem(evt);
+    const mouseMoveHandler = (e) => {
+      const end = getMousePosElem(e);
+      obstacleDraw = new Line(start.x, start.y, end.x, end.y);
+    };
+    const mouseUpHandler = (e) => {
+      canvas.removeEventListener("mousemove", mouseMoveHandler);
+      canvas.removeEventListener("mouseup", mouseUpHandler);
+      if (obstacleDraw) {
+        obstacles.push(obstacleDraw);
+        obstacleDraw = null;
+      }
+    };
+    canvas.addEventListener("mousemove", mouseMoveHandler);
+    canvas.addEventListener("mouseup", mouseUpHandler);
+  });
+
   canvas.addEventListener("mouseleave", (evt) => (isLerping = true));
   resetButton.addEventListener("click", resetObstacles, false);
   ctx.globalAlpha = 0.75;
@@ -46,6 +66,7 @@ function draw() {
   for (const obstacle of obstacles) {
     obstacle.draw(ctx);
   }
+  if (obstacleDraw) obstacleDraw.draw(ctx);
   source.draw(ctx);
 }
 
@@ -54,4 +75,5 @@ setInterval(() => {
   clear();
   draw();
   update();
+  console.log(obstacles.length);
 }, getMs(60));
