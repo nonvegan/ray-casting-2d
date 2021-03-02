@@ -20,9 +20,9 @@ function setup() {
   });
   canvas.addEventListener("mouseleave", (evt) => (isLerping = true));
   resetButton.addEventListener("click", resetObstacles, false);
-  ctx.globalAlpha = 0.5;
+  ctx.globalAlpha = 0.75;
   ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue("--fuchsia");
-  source = new Source(width / 2, height / 2, 200, obstacles);
+  source = new Source(width / 2, height / 2, 300, obstacles);
   resetObstacles();
 }
 
