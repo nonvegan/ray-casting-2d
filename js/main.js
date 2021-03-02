@@ -48,7 +48,7 @@ function setup() {
 
 function resetObstacles() {
   obstacles = [];
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 4; i++) {
     obstacles.push(new Line(Math.random() * width, Math.random() * height, Math.random() * width, Math.random() * height));
   }
   source.obstacles = obstacles;
