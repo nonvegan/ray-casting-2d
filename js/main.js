@@ -56,7 +56,7 @@ function setupObstacles() {
 }
 
 function clear() {
-  ctx.clearRect(0, 0, width, height);
+  ctx.clearRect(-1, -1, width+1, height+1);
 }
 
 function update() {
