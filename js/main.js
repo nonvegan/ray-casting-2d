@@ -6,10 +6,8 @@ const resetButton = document.getElementById("resetButton");
 const ctx = canvas.getContext("2d");
 const width = Math.min(window.innerWidth, window.innerHeight) / 1.6;
 const height = Math.min(window.innerWidth, window.innerHeight) / 1.6;
-
 const source = new Source(width / 2, height / 2, 300);
-let lineDrawing;
-let isOutOfCanvas = false;
+let lineDrawing, isOutOfCanvas = false;
 
 function setup() {
   canvas.width = width;
@@ -19,8 +17,8 @@ function setup() {
   ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue("--fuchsia");
   canvas.addEventListener("mouseleave", (evt) => (isOutOfCanvas = true));
   canvas.addEventListener("mousemove", (evt) => {
-    source.pos = getMousePosElem(evt);
     isOutOfCanvas = false;
+    source.pos = getMousePosElem(evt);
   });
   canvas.addEventListener("mousedown", (evt) => {
     const start = getMousePosElem(evt);
@@ -39,8 +37,7 @@ function setup() {
     canvas.addEventListener("mousemove", mouseMoveHandler);
     canvas.addEventListener("mouseup", mouseUpHandler);
   });
-  resetButton.addEventListener("click", setupObstacles, false);
-
+  resetButton.addEventListener("click", setupObstacles);
   setupObstacles();
 }
 
