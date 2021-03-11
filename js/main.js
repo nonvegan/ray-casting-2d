@@ -46,17 +46,17 @@ function setup() {
 
 function setupObstacles() {
   source.obstacles=[];
-  source.obstacles.push(new Line(-1,-1,width+1,-1));
-  source.obstacles.push(new Line(-1,-1,-1,height+1));
-  source.obstacles.push(new Line(width+1,-1,width+1,height+1));
-  source.obstacles.push(new Line(-1,height+1,width+1,height+1));
+  source.obstacles.push(new Line(0,0,width,0));
+  source.obstacles.push(new Line(0,0,0,height));
+  source.obstacles.push(new Line(width,0,width,height));
+  source.obstacles.push(new Line(0,height,width,height));
   for (let i = 0; i < 4; i++) {
     source.obstacles.push(new Line(Math.random() * width, Math.random() * height, Math.random() * width, Math.random() * height));
   }
 }
 
 function clear() {
-  ctx.clearRect(-1, -1, width+1, height+1);
+  ctx.clearRect(0,0, width, height);
 }
 
 function update() {
