@@ -8,7 +8,7 @@ const width = Math.min(window.innerWidth, window.innerHeight) / 1.6;
 const height = Math.min(window.innerWidth, window.innerHeight) / 1.6;
 let lineDrawing;
 let source;
-let isLerping = false;
+let isOutOfCanvas = false;
 
 function setup() {
   canvas.width = width;
@@ -16,10 +16,10 @@ function setup() {
   canvas.style.cursor = "none";
   ctx.globalAlpha = 0.5;
   ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue("--fuchsia");
-  canvas.addEventListener("mouseleave", (evt) => (isLerping = true));
+  canvas.addEventListener("mouseleave", (evt) => (isOutOfCanvas = true));
   canvas.addEventListener("mousemove", (evt) => {
     source.pos = getMousePosElem(evt);
-    isLerping = false;
+    isOutOfCanvas = false;
   });
   canvas.addEventListener("mousedown", (evt) => {
     const start = getMousePosElem(evt);
@@ -46,7 +46,10 @@ function setup() {
 
 function setupObstacles() {
   source.obstacles=[];
-
+  source.obstacles.push(new Line(-1,-1,width+1,-1));
+  source.obstacles.push(new Line(-1,-1,-1,height+1));
+  source.obstacles.push(new Line(width+1,-1,width+1,height+1));
+  source.obstacles.push(new Line(-1,height+1,width+1,height+1));
   for (let i = 0; i < 4; i++) {
     source.obstacles.push(new Line(Math.random() * width, Math.random() * height, Math.random() * width, Math.random() * height));
   }
@@ -57,7 +60,7 @@ function clear() {
 }
 
 function update() {
-  if (isLerping) source.pos.lerp(new Vector(width / 2, height / 2), 0.1);
+  if (isOutOfCanvas) source.pos.lerp(new Vector(width / 2, height / 2), 0.1);
 }
 
 function draw() {
