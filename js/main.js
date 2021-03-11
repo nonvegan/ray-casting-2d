@@ -6,7 +6,6 @@ const resetButton = document.getElementById("resetButton");
 const ctx = canvas.getContext("2d");
 const width = Math.min(window.innerWidth, window.innerHeight) / 1.6;
 const height = Math.min(window.innerWidth, window.innerHeight) / 1.6;
-let obstacles = [];
 let lineDrawing;
 let source;
 let isLerping = false;
@@ -32,7 +31,7 @@ function setup() {
       canvas.removeEventListener("mousemove", mouseMoveHandler);
       canvas.removeEventListener("mouseup", mouseUpHandler);
       if (lineDrawing) {
-        obstacles.push(lineDrawing);
+        source.obstacles.push(lineDrawing);
         lineDrawing = null;
       }
     };
@@ -41,22 +40,20 @@ function setup() {
   });
   resetButton.addEventListener("click", setupObstacles, false);
 
-  source = new Source(width / 2, height / 2, 300, obstacles);
+  source = new Source(width / 2, height / 2, 300, []);
   setupObstacles();
 }
 
 function setupObstacles() {
-  obstacles = [];
-  obstacles.push(new Line(0,0,width,0));
-  obstacles.push(new Line(0,0,0,height));
-  obstacles.push(new Line(width,0,width,height));
-  obstacles.push(new Line(0,height,width,height));
-  obstacles.push(new Line(0,0,height,0));
-  obstacles.push(new Line(Math.random() * width, Math.random() * height, Math.random() * width, Math.random() * height))
+  source.obstacles=[];
+  source.obstacles.push(new Line(0,0,width,0));
+  source.obstacles.push(new Line(0,0,0,height));
+  source.obstacles.push(new Line(width,0,width,height));
+  source.obstacles.push(new Line(0,height,width,height));
+  source.obstacles.push(new Line(0,0,height,0));
   for (let i = 0; i < 4; i++) {
-    obstacles.push(new Line(Math.random() * width, Math.random() * height, Math.random() * width, Math.random() * height));
+    source.obstacles.push(new Line(Math.random() * width, Math.random() * height, Math.random() * width, Math.random() * height));
   }
-  source.obstacles = obstacles;
 }
 
 function clear() {
@@ -68,7 +65,7 @@ function update() {
 }
 
 function draw() {
-  for (const obstacle of obstacles) {
+  for (const obstacle of source.obstacles) {
     obstacle.draw(ctx);
   }
   if (lineDrawing) lineDrawing.draw(ctx);
