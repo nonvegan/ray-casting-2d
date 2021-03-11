@@ -7,7 +7,7 @@ const ctx = canvas.getContext("2d");
 const width = Math.min(window.innerWidth, window.innerHeight) / 1.6;
 const height = Math.min(window.innerWidth, window.innerHeight) / 1.6;
 
-const source = new Source(width / 2, height / 2, 300, []);
+const source = new Source(width / 2, height / 2, 300);
 let lineDrawing;
 let isOutOfCanvas = false;
 
@@ -67,7 +67,7 @@ function draw() {
   for (const obstacle of source.obstacles) {
     obstacle.draw(ctx);
   }
-  if (lineDrawing) lineDrawing.draw(ctx);
+   lineDrawing?.draw(ctx);
   source.draw(ctx);
 }
 
