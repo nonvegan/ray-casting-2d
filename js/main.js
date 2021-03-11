@@ -1,4 +1,4 @@
-import { getMs, getMousePosElem } from "./helpers.js";
+import {getMousePosElem} from "./helpers.js";
 import { Source, Line, Vector } from "./classes.js";
 
 const canvas = document.getElementById("canvas");
