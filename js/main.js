@@ -39,7 +39,7 @@ function setup() {
     canvas.addEventListener("mousemove", mouseMoveHandler);
     canvas.addEventListener("mouseup", mouseUpHandler);
   });
-  resetButton.addEventListener("click", resetObstacles, false);
+  resetButton.addEventListener("click", setupObstacles, false);
 
   source = new Source(width / 2, height / 2, 300, obstacles);
   setupObstacles();
