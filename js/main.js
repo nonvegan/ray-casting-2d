@@ -1,4 +1,4 @@
-import {getMousePosElem} from "./helpers.js";
+import { getMousePosElem } from "./helpers.js";
 import { Source, Line, Vector } from "./classes.js";
 
 const canvas = document.getElementById("canvas");
@@ -15,7 +15,7 @@ function setup() {
   canvas.width = width;
   canvas.height = height;
   canvas.style.cursor = "none";
-  ctx.globalAlpha = 0.5;
+  ctx.globalAlpha = 0.4;
   ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue("--fuchsia");
   canvas.addEventListener("mouseleave", (evt) => (isOutOfCanvas = true));
   canvas.addEventListener("mousemove", (evt) => {
@@ -40,23 +40,23 @@ function setup() {
     canvas.addEventListener("mouseup", mouseUpHandler);
   });
   resetButton.addEventListener("click", setupObstacles, false);
-  
+
   setupObstacles();
 }
 
 function setupObstacles() {
-  source.obstacles=[];
-  source.obstacles.push(new Line(0,0,width,0));
-  source.obstacles.push(new Line(0,0,0,height));
-  source.obstacles.push(new Line(width,0,width,height));
-  source.obstacles.push(new Line(0,height,width,height));
+  source.obstacles = [];
+  source.obstacles.push(new Line(0, 0, width, 0));
+  source.obstacles.push(new Line(0, 0, 0, height));
+  source.obstacles.push(new Line(width, 0, width, height));
+  source.obstacles.push(new Line(0, height, width, height));
   for (let i = 0; i < 4; i++) {
     source.obstacles.push(new Line(Math.random() * width, Math.random() * height, Math.random() * width, Math.random() * height));
   }
 }
 
 function clear() {
-  ctx.clearRect(0,0, width, height);
+  ctx.clearRect(0, 0, width, height);
 }
 
 function update() {
@@ -67,15 +67,15 @@ function draw() {
   for (const obstacle of source.obstacles) {
     obstacle.draw(ctx);
   }
-   lineDrawing?.draw(ctx);
+  lineDrawing?.draw(ctx);
   source.draw(ctx);
 }
 
-function animate(){
+function animate() {
   clear();
   draw();
   update();
-  requestAnimationFrame(animate); 
+  requestAnimationFrame(animate);
 }
 
 setup();

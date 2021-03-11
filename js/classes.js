@@ -2,6 +2,7 @@ class Source {
   constructor(x, y, nRays) {
     this.pos = new Vector(x, y);
     this.nRays = nRays;
+    this.obstacles = [];
   }
   draw(ctx) {
     for (let i = 0, angle = 0; i < this.nRays; i++, angle += (2 * Math.PI) / this.nRays) {
