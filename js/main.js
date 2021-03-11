@@ -42,11 +42,17 @@ function setup() {
   resetButton.addEventListener("click", resetObstacles, false);
 
   source = new Source(width / 2, height / 2, 300, obstacles);
-  resetObstacles();
+  setupObstacles();
 }
 
-function resetObstacles() {
+function setupObstacles() {
   obstacles = [];
+  obstacles.push(new Line(0,0,width,0));
+  obstacles.push(new Line(0,0,0,height));
+  obstacles.push(new Line(width,0,width,height));
+  obstacles.push(new Line(0,height,width,height));
+  obstacles.push(new Line(0,0,height,0));
+  obstacles.push(new Line(Math.random() * width, Math.random() * height, Math.random() * width, Math.random() * height))
   for (let i = 0; i < 4; i++) {
     obstacles.push(new Line(Math.random() * width, Math.random() * height, Math.random() * width, Math.random() * height));
   }
@@ -69,9 +75,12 @@ function draw() {
   source.draw(ctx);
 }
 
-setup();
-setInterval(() => {
+function animate(){
   clear();
   draw();
   update();
-}, getMs(60));
+  requestAnimationFrame(animate); 
+}
+
+setup();
+animate();
