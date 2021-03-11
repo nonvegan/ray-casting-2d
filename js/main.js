@@ -46,11 +46,7 @@ function setup() {
 
 function setupObstacles() {
   source.obstacles=[];
-  source.obstacles.push(new Line(0,0,width,0));
-  source.obstacles.push(new Line(0,0,0,height));
-  source.obstacles.push(new Line(width,0,width,height));
-  source.obstacles.push(new Line(0,height,width,height));
-  source.obstacles.push(new Line(0,0,height,0));
+
   for (let i = 0; i < 4; i++) {
     source.obstacles.push(new Line(Math.random() * width, Math.random() * height, Math.random() * width, Math.random() * height));
   }
