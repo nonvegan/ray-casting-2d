@@ -6,19 +6,20 @@ const resetButton = document.getElementById("resetButton");
 const ctx = canvas.getContext("2d");
 const width = Math.min(window.innerWidth, window.innerHeight) / 1.6;
 const height = Math.min(window.innerWidth, window.innerHeight) / 1.6;
-const source = new Source(width / 2, height / 2, 300);
-let lineDrawing, isOutOfCanvas = false;
+const source = new Source(width / 2, height / 2, 250);
+let lineDrawing,
+  isOutOfCanvas = false;
 
 function setup() {
   canvas.width = width;
   canvas.height = height;
   canvas.style.cursor = "none";
-  ctx.globalAlpha = 0.4;
-  ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue("--fuchsia");
+  ctx.strokeStyle = "#f92672";
+  ctx.globalAlpha = 0.5;
   canvas.addEventListener("mouseleave", (evt) => (isOutOfCanvas = true));
   canvas.addEventListener("mousemove", (evt) => {
-    isOutOfCanvas = false;
     source.pos = getMousePosElem(evt);
+    isOutOfCanvas = false;
   });
   canvas.addEventListener("mousedown", (evt) => {
     const start = getMousePosElem(evt);

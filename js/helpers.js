@@ -7,4 +7,4 @@ function getMousePosElem(click, xOffset, yOffset) {
   );
 }
 
-export {getMousePosElem };
+export { getMousePosElem };
