@@ -6,8 +6,9 @@ const resetButton = document.getElementById("resetButton");
 const ctx = canvas.getContext("2d");
 const width = Math.min(window.innerWidth, window.innerHeight) / 1.6;
 const height = Math.min(window.innerWidth, window.innerHeight) / 1.6;
+
+const source = new Source(width / 2, height / 2, 300, []);
 let lineDrawing;
-let source;
 let isOutOfCanvas = false;
 
 function setup() {
@@ -39,8 +40,7 @@ function setup() {
     canvas.addEventListener("mouseup", mouseUpHandler);
   });
   resetButton.addEventListener("click", setupObstacles, false);
-
-  source = new Source(width / 2, height / 2, 300, []);
+  
   setupObstacles();
 }
 
