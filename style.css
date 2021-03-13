@@ -4,7 +4,7 @@
     body {
         margin: 0;
         padding: 0;
-        background-color: #282c34;
+        background-color: #21252b;
         color: white;
         font-family: sans-serif;
     }
@@ -20,7 +20,7 @@
     }
 
     canvas {
-        background-color: #000000;
+        background-color: #282c34;
         border: 0.3rem solid #ae81ff;
         border-radius: 0.5rem;
         margin-right:  2vw;
