@@ -26,7 +26,7 @@ function setup() {
   rayCastingCanvas.height = height;
   projectionCanvas.width = width;
   projectionCanvas.height = height;
-  rayCastingCanvas.style.cursor = "crosshair";
+  rayCastingCanvas.style.cursor = "pointer";
   projectionCtx.translate(0, height / 2);
   rayCastingCtx.strokeStyle = "#f92672";
 
