@@ -11,8 +11,16 @@
 
 <body>
     <h1><span>2D</span> Ray casting</h1>
-    <div><canvas id="canvas"></canvas></div>
-    <div><button id="resetButton"><span>Reset</span></button></div>
+    <div><canvas id="rayCastingCanvas"></canvas><canvas id="projectionCanvas"></canvas></div>
+    <div>
+        <label for="fovInput">Fov</label>
+        <input id="fovInput" type="range" autocomplete="off" min="1" value="60" max="360">
+        <label for="fovInput">nRays</label>
+        <input id="nRaysInput" type="range" autocomplete="off" min="5" value="20" max="35" step="1">
+
+    </div>
+    <div> <button id="randomButton"><span>Random walls</span></button>
+        <button id="resetButton"><span>Clear</span></button></div>
     <script type="module" src="js/main.js"></script>
 </body>
 

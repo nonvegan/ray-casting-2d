@@ -29,9 +29,10 @@
     }
 
     canvas {
-        background-color: #282c34;
+        background-color: #000000;
         border: 0.3rem solid #ae81ff;
         border-radius: 0.5rem;
+        margin-right:  2vw;
     }
 
     div {
@@ -43,13 +44,14 @@
     }
 
     label {
-        font-size: 2rem;
+        font-size: 2.5rem;
         margin-top: 1.5vh;
-        margin-left: 1.5rem;
+        margin-right: 0.5vw;
     }
+
     label.switch {
         margin-left: 0.5vw;
-     }
+    }
 
     input,
     button,
@@ -58,15 +60,14 @@
         height: 3rem;
         background-color: inherit;
         color: inherit;
-        margin-right: 0vw;
-        margin-left: 1.5vw;
+        margin-right: 1vw;
         margin-top: 1.5vh;
         border: 0.3rem solid white;
         border-radius: .75rem;
         font-size: 1.25rem;
     }
 
-   
+
 
     option,
     option div {
@@ -76,8 +77,8 @@
 
     input {
         appearance: none;
-        height: 2.3rem;
-
+        height: 2.5rem;
+        width: 14rem;
     }
 
     button:hover,
@@ -120,7 +121,7 @@
         height: 1.7rem;
         width: 1.7rem;
         left: 0.4rem;
-        top: 0.4rem;
+        top: 0.1rem;
         background-color: white;
         border-radius: 50%;
     }
