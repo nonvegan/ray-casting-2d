@@ -28,7 +28,7 @@ function setup() {
   projectionCanvas.height = height;
   rayCastingCanvas.style.cursor = "crosshair";
   projectionCtx.translate(0, height / 2);
-  rayCastingCtx.strokeStyle = "#ffffff";
+  rayCastingCtx.strokeStyle = "#f92672";
 
   rayCastingCanvas.addEventListener("mousedown", (evt) => {
     const randomColor = Color.RANDOM;
@@ -65,10 +65,10 @@ function setup() {
 
 function setupObstacles() {
   source.obstacles = [];
-  source.obstacles.push(new Line(0, 0, width, 0, new Color(255, 255, 255)));
-  source.obstacles.push(new Line(0, 0, 0, height, new Color(255, 255, 255)));
-  source.obstacles.push(new Line(width, 0, width, height, new Color(255, 255, 255)));
-  source.obstacles.push(new Line(0, height, width, height, new Color(255, 255, 255)));
+  source.obstacles.push(new Line(0, 0, width, 0, new Color(98,15,45)));
+  source.obstacles.push(new Line(0, 0, 0, height, new Color(98,15,45)));
+  source.obstacles.push(new Line(width, 0, width, height, new Color(98,15,45)));
+  source.obstacles.push(new Line(0, height, width, height, new Color(98,15,45)));
 }
 
 function generateRandomObstacles() {
