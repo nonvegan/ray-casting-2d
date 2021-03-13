@@ -9,18 +9,18 @@ class Source {
     this.angle = angle;
   }
   draw(ctx) {
-    const rayDists = [];
+    const rayCollisions = [];
     ctx.save()
     for (let i = 0, angle = this.angle - this.fov / 2; i < this.nRays; i++, angle += this.fov / this.nRays) {
       let ray = new Ray(this.pos.x, this.pos.y, angle);
       for (let obstacle of this.obstacles) {
         ray.checkCollision(obstacle);
       }
-      rayDists.push({ dist: this.pos.distance(ray.collPos), color: ray.collColor, angle: ray.ang });
+      rayCollisions.push({ dist: this.pos.distance(ray.collPos), color: ray.collColor, angle: ray.ang });
       ray.draw(ctx);
     }
     ctx.restore()
-    return rayDists;
+    return rayCollisions;
   }
 }
 

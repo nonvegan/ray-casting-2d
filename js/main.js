@@ -1,4 +1,4 @@
-import { getMousePosElem, restrain } from "./helpers.js";
+import { getMousePosElem } from "./helpers.js";
 import { Source, Line, Vector, Color } from "./classes.js";
 
 const rayCastingCanvas = document.getElementById("rayCastingCanvas");
@@ -9,12 +9,11 @@ const resetButton = document.getElementById("resetButton");
 const randomButton = document.getElementById("randomButton");
 const rayCastingCtx = rayCastingCanvas.getContext("2d");
 const projectionCtx = projectionCanvas.getContext("2d");
-const width = Math.floor(Math.min(window.innerWidth, window.innerHeight) / 2);
+const width = Math.floor(Math.min(window.innerWidth, window.innerHeight) / 2.2);
 const height = width;
+
 const source = new Source(width / 2, height / 2, 0, Math.PI / 3, width / 10);
-
 let lineDrawing;
-
 let movementKeys = {
   KeyW: false,
   KeyA: false,
@@ -28,14 +27,8 @@ function setup() {
   projectionCanvas.width = width;
   projectionCanvas.height = height;
   rayCastingCanvas.style.cursor = "crosshair";
-  rayCastingCtx.strokeStyle = "white";
   projectionCtx.translate(0, height / 2);
-  window.addEventListener("keydown", (evt) => {
-    if (evt.code in movementKeys) movementKeys[evt.code] = true;
-  });
-  window.addEventListener("keyup", (evt) => {
-    if (evt.code in movementKeys) movementKeys[evt.code] = false;
-  });
+  rayCastingCtx.strokeStyle = "#ffffff";
 
   rayCastingCanvas.addEventListener("mousedown", (evt) => {
     const randomColor = Color.RANDOM;
@@ -55,7 +48,12 @@ function setup() {
     rayCastingCanvas.addEventListener("mousemove", mouseMoveHandler);
     rayCastingCanvas.addEventListener("mouseup", mouseUpHandler);
   });
-
+  window.addEventListener("keydown", (evt) => {
+    if (evt.code in movementKeys) movementKeys[evt.code] = true;
+  });
+  window.addEventListener("keyup", (evt) => {
+    if (evt.code in movementKeys) movementKeys[evt.code] = false;
+  });
   fovInput.addEventListener("input", (evt) => (source.fov = (fovInput.value * Math.PI) / 180));
   nRaysInput.addEventListener("input", (evt) => {
     source.nRays = width / (parseInt(nRaysInput.getAttribute("max")) + 1 - nRaysInput.value);
@@ -74,7 +72,7 @@ function setupObstacles() {
 }
 
 function generateRandomObstacles() {
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     source.obstacles.push(new Line(Math.random() * width, Math.random() * height, Math.random() * width, Math.random() * height, Color.RANDOM));
   }
 }
@@ -97,7 +95,7 @@ function update() {
   if (movementKeys.KeyS) source.pos.sub(new Vector(Math.cos(source.angle), Math.sin(source.angle)));
   if (movementKeys.KeyA) source.angle -= 0.015;
   if (movementKeys.KeyD) source.angle += 0.015;
-  source.pos.restrain(10, width - 10, 10, width - 10);
+  source.pos.restrain(5, width - 5, 5, width - 5);
 }
 
 function draw() {
