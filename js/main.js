@@ -104,14 +104,17 @@ function draw() {
   for (const obstacle of source.obstacles) {
     obstacle.draw(rayCastingCtx);
   }
+  for (let i = 0; i < height / 2; i++) {
+    const d = i / Math.sqrt(Math.pow(height, 2));
+    projectionCtx.fillStyle = `rgb(${255 * d},${255 * d},${255 * d})`;
+    projectionCtx.fillRect(0, i, width, 1);
+  }
   for (let i = 0; i < rayCollisions.length; i++) {
     const r = rayCollisions[i];
     const maxDist = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
     let d = (maxDist - r.dist + 10) / maxDist;
     projectionCtx.fillStyle = `rgb(${r.color.r * d},${r.color.g * d},${r.color.b * d})`;
     projectionCtx.fillRect((i / source.nRays) * width, (-d * height) / 2, width / source.nRays, d * height);
-    projectionCtx.fillStyle = `#707070`;
-    projectionCtx.fillRect((i / source.nRays) * width, (d * height) / 2, width / source.nRays, height);
   }
 }
 
@@ -119,7 +122,6 @@ function animate() {
   clear();
   draw();
   update();
-
   requestAnimationFrame(animate);
 }
 
