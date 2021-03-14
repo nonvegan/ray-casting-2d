@@ -65,10 +65,10 @@ function setup() {
 
 function setupObstacles() {
   source.obstacles = [];
-  source.obstacles.push(new Line(0, 0, width, 0, new Color(98,15,45)));
-  source.obstacles.push(new Line(0, 0, 0, height, new Color(98,15,45)));
-  source.obstacles.push(new Line(width, 0, width, height, new Color(98,15,45)));
-  source.obstacles.push(new Line(0, height, width, height, new Color(98,15,45)));
+  source.obstacles.push(new Line(0, 0, width, 0, new Color(98, 15, 45)));
+  source.obstacles.push(new Line(0, 0, 0, height, new Color(98, 15, 45)));
+  source.obstacles.push(new Line(width, 0, width, height, new Color(98, 15, 45)));
+  source.obstacles.push(new Line(0, height, width, height, new Color(98, 15, 45)));
 }
 
 function generateRandomObstacles() {
@@ -110,6 +110,8 @@ function draw() {
     let d = (maxDist - r.dist + 10) / maxDist;
     projectionCtx.fillStyle = `rgb(${r.color.r * d},${r.color.g * d},${r.color.b * d})`;
     projectionCtx.fillRect((i / source.nRays) * width, (-d * height) / 2, width / source.nRays, d * height);
+    projectionCtx.fillStyle = `#707070`;
+    projectionCtx.fillRect((i / source.nRays) * width, (d * height) / 2, width / source.nRays, height);
   }
 }
 
@@ -117,6 +119,7 @@ function animate() {
   clear();
   draw();
   update();
+
   requestAnimationFrame(animate);
 }
 
