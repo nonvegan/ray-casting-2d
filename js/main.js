@@ -112,7 +112,7 @@ function draw() {
   for (let i = 0; i < rayCollisions.length; i++) {
     const r = rayCollisions[i];
     const maxDist = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
-    let d = (maxDist - r.dist + 10) / maxDist;
+    let d = ((maxDist - r.dist + 20) / maxDist) * 0.75;
     projectionCtx.fillStyle = `rgb(${r.color.r * d},${r.color.g * d},${r.color.b * d})`;
     projectionCtx.fillRect((i / source.nRays) * width, (-d * height) / 2, width / source.nRays, d * height);
   }
